@@ -9,13 +9,23 @@
 <body>
     <h3> My Shoppinglist </h3>
     <input type="text" id="NewItem" placeholder="Add new item">
-    <input type="button" onclick="AddNewItem()">
+
+    <button onclick="AddNewItem()">Add item</button>
+    <ul id = "list"></ul>
     <script>
         const Shoppinglist = []
         function AddNewItem(){
-           var NewItem = document.getElementById("NewItem").value;
-           Shoppinglist.push(NewItem)
-           console.log(Shoppinglist)
+            var NewItem = document.getElementById("NewItem").value;
+            Shoppinglist.push(NewItem)
+            console.log(Shoppinglist)
+            var Shoppinglistlength = Shoppinglist.lenth
+            var ShoppinglistElement = document.getElementById("list");
+            ShoppinglistElement.innerHTML = "";
+            Shoppinglist.forEach(element => {
+                var node = document.createElement("li");
+                node.innerHTML = element;
+                ShoppinglistElement.appendChild(node)
+            });
         }
     </script>
 </body>
