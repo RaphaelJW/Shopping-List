@@ -9,6 +9,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+//MongoDB setup
+var mongoose = require("mongoose");
+var mongoDB = 'mongodb+srv://dbUser:tinware-confuse-shrive@cluster0.ha2vo.mongodb.net/shopping-list?retryWrites=true&w=majority'
+mongoose.connect(mongoDB);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
