@@ -10,22 +10,33 @@
     <h3> My Shoppinglist </h3>
     <input type="text" id="NewItem" placeholder="Add new item">
 
-    <button onclick="AddNewItem()">Add item</button>
+    <button onclick="AddNewItem()" id="AddBtn">Add item</button>
     <ul id = "list"></ul>
     <script>
+        //Submit when pressing 'Enter'
+        var input = document.getElementById("NewItem");
+        input.addEventListener("keyup", function(event){
+            if (event.keyCode === 13){
+                event.preventDefault();
+                document.getElementById("AddBtn").click();
+            }
+        })
+        
+        //Adding a new item to the shoppinglist
         const Shoppinglist = []
         function AddNewItem(){
             var NewItem = document.getElementById("NewItem").value;
-            Shoppinglist.push(NewItem)
-            console.log(Shoppinglist)
-            var Shoppinglistlength = Shoppinglist.lenth
+            Shoppinglist.push(NewItem);
+            console.log(Shoppinglist);
+            var Shoppinglistlength = Shoppinglist.lenth;
             var ShoppinglistElement = document.getElementById("list");
             ShoppinglistElement.innerHTML = "";
             Shoppinglist.forEach(element => {
                 var node = document.createElement("li");
                 node.innerHTML = element;
-                ShoppinglistElement.appendChild(node)
+                ShoppinglistElement.appendChild(node);
             });
+            document.getElementById("NewItem").value = '';
         }
     </script>
 </body>
