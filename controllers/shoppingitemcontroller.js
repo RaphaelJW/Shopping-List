@@ -1,7 +1,16 @@
+var async = require("async")
 var ShoppingItem = require("../models/shopping-item");
 
+
 exports.index = (req, res) =>{
-    res.send("NOT IMPLEMENTED: HomePage");
+    async.parallel({
+        item_count: (callback) => {
+            ShoppingItem.countDocuments({}, callback);
+        }
+    }, (err, results) => {
+        res.render("index", {title: "Home", error: err, data: results})
+    });
+    
 }
 
 exports.item_list = (req, res) =>{
