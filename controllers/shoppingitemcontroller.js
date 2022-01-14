@@ -14,7 +14,10 @@ exports.index = (req, res) =>{
 }
 
 exports.item_list = (req, res) =>{
-    res.send("NOT IMPLEMENTED: shopping list")
+    ShoppingItem.find({}, "name count").exec((err, result) =>{
+        if(err) {return next(err);}
+        res.render("shoppinglist", { title: "Shopping List", shoppingItems: result});
+    });
 }
 
 exports.item_details = (req, res) =>{
