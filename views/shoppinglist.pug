@@ -1,0 +1,14 @@
+extends layout 
+
+block content
+    h1= title 
+    p Welkom op #{title} pagina!
+
+    h4 Jouw shopping list: 
+
+    ul
+        each item in shoppingItems 
+            li #[strong #{item.name}: ] #[em #{item.count}]x
+
+        else 
+            li Er zijn geen items op je shopping list
