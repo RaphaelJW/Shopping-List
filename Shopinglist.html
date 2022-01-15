@@ -11,8 +11,27 @@
     <input type="text" id="NewItem" placeholder="Add new item">
 
     <button onclick="AddNewItem()" id="AddBtn">Add item</button>
+    <button onclick="localStorage.removeItem('storedlist'); Shoppinglist = []; ShoppinglistElement.innerHTML = ''">Clear items</button>
     <ul id = "list"></ul>
+
+
     <script>
+        var storeddata = localStorage.getItem("storedlist")
+        if (storeddata){
+            var Shoppinglist = JSON.parse(storeddata)
+        }
+        else{
+            Shoppinglist = []
+        }
+
+        var ShoppinglistElement = document.getElementById("list");
+            ShoppinglistElement.innerHTML = "";
+            Shoppinglist.forEach(element => {
+                var node = document.createElement("li");
+                node.innerHTML = element;
+                ShoppinglistElement.appendChild(node);
+            });
+
         //Submit when pressing 'Enter'
         var input = document.getElementById("NewItem");
         input.addEventListener("keyup", function(event){
@@ -23,7 +42,6 @@
         })
         
         //Adding a new item to the shoppinglist
-        const Shoppinglist = []
         function AddNewItem(){
             var NewItem = document.getElementById("NewItem").value;
             Shoppinglist.push(NewItem);
@@ -37,6 +55,9 @@
                 ShoppinglistElement.appendChild(node);
             });
             document.getElementById("NewItem").value = '';
+            
+            var ListString = JSON.stringify(Shoppinglist)
+            localStorage.setItem("storedlist", ListString)
         }
     </script>
 </body>
