@@ -20,12 +20,13 @@ function AddNewItem(){
     var NewItem = document.createElement("li")
     var itemelement = document.createElement("strong")
     var amountelement = document.createElement("em")
-    itemelement.innerHTML = Item
-    amountelement.value = Amount
+    itemelement.innerHTML = `${Item}: `
+    amountelement.innerText = `${Amount}x`
     NewItem.appendChild(itemelement)
     NewItem.appendChild(amountelement)
     document.getElementById("list").appendChild(NewItem)
     console.log(typeof Amount)
+    console.log(amountelement)
     
 
     /*
