@@ -1,14 +1,22 @@
 extends layout 
 
 block content
+    script(src="/scripts/Shoppinglist.js") 
     h1= title 
     p Welkom op #{title} pagina!
 
     h4 Jouw shopping list: 
 
-    ul
+    <h3> My Shoppinglist </h3>
+    <input type="text" id="item" placeholder="Add new item">
+    <input type="number" id="amount" placeholder="Amount" min = 1>
+
+    <button onclick="AddNewItem()" id="AddBtn">Add item</button>
+
+    ul(id = "list")
         each item in shoppingItems 
             li #[strong #{item.name}: ] #[em #{item.count}]x
 
         else 
             li Er zijn geen items op je shopping list
+
