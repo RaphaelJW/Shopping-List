@@ -10,24 +10,39 @@ input.addEventListener("keyup", (event) => {
         }
     })
 */
-
+const PostItemUrl = "http://localhost:3000/shoppinglist/items"
 
 //Adding a new item to the shoppinglist
 function AddNewItem(){
     var Item = document.getElementById("item").value;
     var Amount = document.getElementById("amount").value;
     if(!Item){return;}
-    var NewItem = document.createElement("li")
-    var itemelement = document.createElement("strong")
-    var amountelement = document.createElement("em")
-    itemelement.innerHTML = `${Item}: `
-    amountelement.innerText = `${Amount}x`
-    NewItem.appendChild(itemelement)
-    NewItem.appendChild(amountelement)
-    document.getElementById("list").appendChild(NewItem)
-    console.log(typeof Amount)
-    console.log(amountelement)
-    
+    var NewItem = document.createElement("li");
+    var itemelement = document.createElement("strong");
+    var amountelement = document.createElement("em");
+    itemelement.innerHTML = `${Item}: `;
+    amountelement.innerText = `${Amount}x`;
+    NewItem.appendChild(itemelement);
+    NewItem.appendChild(amountelement);
+    document.getElementById("list").appendChild(NewItem);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", PostItemUrl);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-type", "application/json");
+
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4)
+        {
+            console.log(JSON.parse(xhr.responseText));
+        }
+    }
+
+    var data = JSON.stringify({
+        item: Item,
+        amount: Amount
+    });
+    xhr.send(data);
 
     /*
     Shoppinglist.push(NewItem);

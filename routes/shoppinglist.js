@@ -9,8 +9,8 @@ router.get('/item/:id', item_controller.item_details);
 
 router.get('/items', item_controller.item_list);
 
-router.post('/', item_controller.item_create_post);
+router.post('/items', item_controller.item_create_post);
 
-router.post('/item/:id', item_controller.item_update_post);
+router.patch('/item/:id', item_controller.item_update_post);
 
 module.exports = router;

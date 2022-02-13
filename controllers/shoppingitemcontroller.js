@@ -25,7 +25,20 @@ exports.item_details = (req, res) =>{
 }
 
 exports.item_create_post = (req, res) =>{
-    res.send("NOT IMPLEMENTED: new item posted on shopping list");
+    res.setHeader("Content-type", "application/json");
+    var data = {
+        name: req.body.item,
+        count: req.body.amount,
+        shoppingstatus: false,
+    }
+    var shoppingItem = new ShoppingItem(data);
+    shoppingItem.save((err) =>
+    {
+        if(err){
+            res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
+        }
+        res.status(201).send(JSON.stringify({succes: true, body: req.body}));
+    })
 }
 
 exports.item_update_post = (req, res) =>{
