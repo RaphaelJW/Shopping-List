@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 10px;
 }
 
 a {
@@ -11,4 +11,7 @@ a {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+}
+.navbar-brand{
+  padding-left: 40px;
 }

@@ -11,14 +11,30 @@ html(lang="en")
     link(rel="stylesheet", href="/stylesheets/style.css")
     
   body 
-    .container-fluid 
-      .row 
-        .col-sm-2 
-          block sidebar 
-            ul(class="sidebar-nav")
-              li
-                a(href="/shoppinglist") Home
-              li 
-                a(href="/shoppinglist/items") Shopping items
+    nav(class="navbar navbar-expand-lg navbar-light bg-light fixed-top")
+      .container-fluid
+        a(class="navbar-brand" href="#") BoodschAppen
+        button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        div(class="collapse navbar-collapse" id="navbarTogglerDemo02")
+          ul(class="navbar-nav me-auto mb-2 mb-lg-0")
+            li.nav-item
+              a(class="nav-link active" aria-current="page" href="/shoppinglist") Home 
+            li.nav-item 
+              a(class="nav-link" href="/shoppinglist/items")  My Shoppinglist
+    
+    .container-fluid
+      .row
+        div(col class="col align-self-start") 
+          div(class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;")
+            a(href="/" class="d-block p-3 link-dark text-dercoration-none" title="Home" data-bs-toggle="tooltip" data-bs-placement="right")
+              svg(class="bi" width="40" height="32")
+                use(href="#bootstrap")
+                span(class="visually-hidden") Home
+            ul(class="nav nav-pills nav-flush flex-column mb-auto text-center")
+              li(class="nav-item")
+                a(href="/" class="nav-link active py-3 border-bottom" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right")
+                  svg(class="bi" width="24" height="24" role="img" aria-label="Home")
+                    use(href="#home")
         .col-sm-10
           block content

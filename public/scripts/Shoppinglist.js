@@ -20,10 +20,12 @@ function AddNewItem(){
     var NewItem = document.createElement("li");
     var itemelement = document.createElement("strong");
     var amountelement = document.createElement("em");
+    var deletebutton = document.createElement("button")
     itemelement.innerHTML = `${Item}: `;
     amountelement.innerText = `${Amount}x`;
     NewItem.appendChild(itemelement);
     NewItem.appendChild(amountelement);
+    NewItem.appendChild(deletebutton)
     document.getElementById("list").appendChild(NewItem);
 
     var xhr = new XMLHttpRequest();
