@@ -1,7 +1,8 @@
 extends layout 
 
 block content
-    script(src="/scripts/Shoppinglist.js") 
+    script(src="/scripts/Shoppinglist.js" defer) 
+    h1= title 
     p Welkom op #{title} pagina!
 
     <h3> My Shoppinglist </h3>
@@ -12,7 +13,7 @@ block content
 
     ul(id = "list")
         each item in shoppingItems 
-            li #[strong #{item.name}: ] #[em #{item.count}]x #[button(id="deletebutton")]
+            li(shoppingitem-id=item.id) #[input(type="checkbox" checked=item.shoppingstatus)] #[strong #{item.name}: ] #[em #{item.count}]x 
 
         else 
             li Er zijn geen items op je shopping list

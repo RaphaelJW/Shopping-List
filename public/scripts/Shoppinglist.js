@@ -10,22 +10,77 @@ input.addEventListener("keyup", (event) => {
         }
     })
 */
+
+//constants
 const PostItemUrl = "http://localhost:3000/shoppinglist/items"
+const ItemUrl = "http://localhost:3000/shoppinglist/item/"
+
+//on page load:
+
+//attach eventlisteners:
+//shoppinglist item event listeners
+document.getElementById("list").childNodes.forEach(shoppinglistNode => {
+    shoppinglistNode.addEventListener("click", expandItem);
+    shoppinglistNode.firstChild.addEventListener("change", CheckItem);
+});
+
+//TODO show more info when clicking on item
+function expandItem()
+{
+    console.log(this.getAttribute("shoppingitem-id"));
+}
+
+//Event when deleting item
+function DeleteItem()
+{
+    
+}
+
+//Event when shopping-status changes
+function CheckItem()
+{
+    var id = this.parentElement.getAttribute("shoppingitem-id")
+    var xhr = new XMLHttpRequest();
+    xhr.open("PATCH", ItemUrl + id);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4)
+        {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            if(response.succes)
+            {
+                console.log("succesfully changed status");
+            }
+        }
+    }
+    var data = JSON.stringify({
+        shoppingstatus: this.checked
+    });
+    xhr.send(data);
+}
 
 //Adding a new item to the shoppinglist
 function AddNewItem(){
     var Item = document.getElementById("item").value;
     var Amount = document.getElementById("amount").value;
     if(!Item){return;}
+
     var NewItem = document.createElement("li");
     var itemelement = document.createElement("strong");
     var amountelement = document.createElement("em");
-    var deletebutton = document.createElement("button")
+    var checkboxelement = document.createElement("input");
+
     itemelement.innerHTML = `${Item}: `;
     amountelement.innerText = `${Amount}x`;
+    checkboxelement.type = "checkbox";
+    checkboxelement.addEventListener("change", CheckItem);
+
+    NewItem.appendChild(checkboxelement);
+    NewItem.innerHTML += " ";
     NewItem.appendChild(itemelement);
     NewItem.appendChild(amountelement);
-    NewItem.appendChild(deletebutton)
     document.getElementById("list").appendChild(NewItem);
 
     var xhr = new XMLHttpRequest();
@@ -36,13 +91,18 @@ function AddNewItem(){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState == 4)
         {
-            console.log(JSON.parse(xhr.responseText));
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            if(response.succes)
+            {
+                NewItem.setAttribute("shoppingitem-id", response.id);
+            }
         }
     }
 
     var data = JSON.stringify({
-        item: Item,
-        amount: Amount
+        name: Item,
+        count: Amount
     });
     xhr.send(data);
 

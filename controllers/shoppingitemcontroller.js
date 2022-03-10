@@ -14,7 +14,7 @@ exports.index = (req, res) =>{
 }
 
 exports.item_list = (req, res) =>{
-    ShoppingItem.find({}, "name count").exec((err, result) =>{
+    ShoppingItem.find({}, "name count shoppingstatus").exec((err, result) =>{
         if(err) {return next(err);}
         res.render("shoppinglist", { title: "Shopping List", shoppingItems: result});
     });
@@ -27,20 +27,42 @@ exports.item_details = (req, res) =>{
 exports.item_create_post = (req, res) =>{
     res.setHeader("Content-type", "application/json");
     var data = {
-        name: req.body.item,
-        count: req.body.amount,
+        name: req.body.name,
+        count: req.body.count,
         shoppingstatus: false,
     }
     var shoppingItem = new ShoppingItem(data);
-    shoppingItem.save((err) =>
+    shoppingItem.save((err, saveditem) =>
     {
         if(err){
             res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
         }
-        res.status(201).send(JSON.stringify({succes: true, body: req.body}));
+        res.status(201).send(JSON.stringify({succes: true, body: req.body, id: saveditem.id}));
     })
 }
 
-exports.item_update_post = (req, res) =>{
-    res.send("NOT IMPLEMENTED: update existing item");
+exports.item_update_patch = (req, res) =>{
+    var id = req.params.id;
+    ShoppingItem.findByIdAndUpdate({_id: id}, req.body, (err, object) => {
+        if(err){
+            res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
+        }
+        else
+        {
+            res.status(201).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
+        }
+    });
+}
+
+exports.item_update_delete = (req, res) =>{
+    var id = req.params.id;
+    ShoppingItem.findByIdAndDelete({_id: id}, (err, object) => {
+        if(err){
+            res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
+        }
+        else
+        {
+            res.status(201).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
+        }
+    });
 }
