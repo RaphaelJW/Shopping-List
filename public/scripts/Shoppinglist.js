@@ -81,8 +81,6 @@ function AddNewItem(){
     NewItem.innerHTML += " ";
     NewItem.appendChild(itemelement);
     NewItem.appendChild(amountelement);
-    
-
     document.getElementById("list").appendChild(NewItem);
 
     var xhr = new XMLHttpRequest();
