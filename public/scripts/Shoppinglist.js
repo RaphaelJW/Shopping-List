@@ -106,6 +106,13 @@ function AddNewItem(){
     });
     xhr.send(data);
 
+    var emptylist = document.getElementById("emptylist")
+    if (emptylist){
+        emptylist.parentNode.removeChild(emptylist)
+    }
+
+
+
     /*
     Shoppinglist.push(NewItem);
     console.log(Shoppinglist);

@@ -16,5 +16,5 @@ block content
             li(shoppingitem-id=item.id) #[input(type="checkbox" checked=item.shoppingstatus)] #[strong #{item.name}: ] #[em #{item.count}]x 
 
         else 
-            li Er zijn geen items op je shopping list
+            li(id = "emptylist") Er zijn geen items op je shopping list
 
