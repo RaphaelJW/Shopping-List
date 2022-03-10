@@ -11,6 +11,8 @@ router.get('/items', item_controller.item_list);
 
 router.post('/items', item_controller.item_create_post);
 
-router.patch('/item/:id', item_controller.item_update_post);
+router.patch('/item/:id', item_controller.item_update_patch);
+
+router.delete('/item/:id', item_controller.item_update_delete);
 
 module.exports = router;
