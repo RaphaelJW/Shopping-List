@@ -11,7 +11,7 @@ html(lang="en")
     link(rel="stylesheet", href="/stylesheets/style.css")
     
   body 
-    nav(class="navbar navbar-expand-lg navbar-light bg-light fixed-top")
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top")
       .container-fluid
         a(class="navbar-brand" href="#") BoodschAppen
         button(class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation")
@@ -24,17 +24,4 @@ html(lang="en")
               a(class="nav-link" href="/shoppinglist/items")  My Shoppinglist
     
     .container-fluid
-      .row
-        div(col class="col align-self-start") 
-          div(class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;")
-            a(href="/" class="d-block p-3 link-dark text-dercoration-none" title="Home" data-bs-toggle="tooltip" data-bs-placement="right")
-              svg(class="bi" width="40" height="32")
-                use(href="#bootstrap")
-                span(class="visually-hidden") Home
-            ul(class="nav nav-pills nav-flush flex-column mb-auto text-center")
-              li(class="nav-item")
-                a(href="/" class="nav-link active py-3 border-bottom" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right")
-                  svg(class="bi" width="24" height="24" role="img" aria-label="Home")
-                    use(href="#home")
-        .col-sm-10
           block content

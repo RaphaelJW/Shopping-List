@@ -49,7 +49,7 @@ exports.item_update_patch = (req, res) =>{
         }
         else
         {
-            res.status(201).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
+            res.status(200).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
         }
     });
 }
@@ -62,7 +62,7 @@ exports.item_update_delete = (req, res) =>{
         }
         else
         {
-            res.status(201).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
+            res.status(200).send(JSON.stringify({succes: true, body: req.body, id: object.id}));
         }
     });
 }

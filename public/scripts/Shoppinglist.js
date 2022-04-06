@@ -22,6 +22,7 @@ const ItemUrl = "http://localhost:3000/shoppinglist/item/"
 document.getElementById("list").childNodes.forEach(shoppinglistNode => {
     shoppinglistNode.addEventListener("click", expandItem);
     shoppinglistNode.firstChild.addEventListener("change", CheckItem);
+    shoppinglistNode.lastChild.addEventListener("click", DeleteItem);
 });
 
 //TODO show more info when clicking on item
@@ -33,7 +34,23 @@ function expandItem()
 //Event when deleting item
 function DeleteItem()
 {
-    
+    var id = this.parentElement.getAttribute("shoppingitem-id");
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", ItemUrl + id)
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = ()=>{
+        if(xhr.readyState == 4 && xhr.status == 200)
+        {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            if(response.succes)
+            {
+                console.log("succesfully changed status");
+            }
+        }
+    }
+    xhr.send()
 }
 
 //Event when shopping-status changes
@@ -71,16 +88,21 @@ function AddNewItem(){
     var itemelement = document.createElement("strong");
     var amountelement = document.createElement("em");
     var checkboxelement = document.createElement("input");
+    var deleteelement = document.createElement("input");
 
     itemelement.innerHTML = `${Item}: `;
     amountelement.innerText = `${Amount}x`;
     checkboxelement.type = "checkbox";
     checkboxelement.addEventListener("change", CheckItem);
 
+    deleteelement.type = "button";
+    deleteelement.addEventListener("click", DeleteItem)
+
     NewItem.appendChild(checkboxelement);
     NewItem.innerHTML += " ";
     NewItem.appendChild(itemelement);
     NewItem.appendChild(amountelement);
+    NewItem.appendChild(deleteelement)
     document.getElementById("list").appendChild(NewItem);
 
     var xhr = new XMLHttpRequest();
