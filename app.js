@@ -13,13 +13,22 @@ var shoppingListRouter = require('./routes/shoppinglist');
 
 var app = express();
 
+//configure helmet
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives:{
+      "script-src": ["'self'", "cdn.jsdelivr.net/npm/bootstrap@5.0.2/"]
+    }
+  })
+)
 
 //MongoDB setup
 var mongoose = require("mongoose");
 //var mongoDB = 'mongodb+srv://dbUser:tinware-confuse-shrive@cluster0.ha2vo.mongodb.net/shopping-list?retryWrites=true&w=majority'
 
-var dev_db_url = 'mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true'
+var dev_db_url = 'mongodb+srv://dbUser:tinware-confuse-shrive@cluster0.ha2vo.mongodb.net/shopping-list?retryWrites=true&w=majority'
 var mongoDB = process.env.MONGODB_URI || dev_db_url
 
 mongoose.connect(mongoDB);
