@@ -12,8 +12,8 @@ input.addEventListener("keyup", (event) => {
 */
 
 //constants
-const PostItemUrl = "http://localhost:3000/shoppinglist/items"
-const ItemUrl = "http://localhost:3000/shoppinglist/item/"
+const PostItemUrl = "https://boodschappnl.herokuapp.com/shoppinglist/items"
+const ItemUrl = "https://boodschappnl.herokuapp.com/shoppinglist/item/"
 
 //on page load:
 
