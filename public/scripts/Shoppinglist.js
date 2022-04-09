@@ -25,6 +25,9 @@ document.getElementById("list").childNodes.forEach(shoppinglistNode => {
     shoppinglistNode.lastChild.addEventListener("click", DeleteItem);
 });
 
+//AddItem event
+document.getElementById("AddBtn").addEventListener("click", AddNewItem);
+
 //TODO show more info when clicking on item
 function expandItem()
 {
