@@ -13,7 +13,7 @@ var shoppingListRouter = require('./routes/shoppinglist');
 
 var app = express();
 
-app.use(helmet);
+app.use(helmet());
 
 //MongoDB setup
 var mongoose = require("mongoose");
