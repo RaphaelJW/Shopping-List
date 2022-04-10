@@ -1,15 +1,7 @@
 
 //Submit when pressing 'Enter'
-/*
-var input = document.getElementById("NewItem");
-input.addEventListener("keyup", (event) => {
-        var code = event.code;
-        if (code === 13) {
-            console.log('Enter')
-            document.getElementById("AddBtn").click();
-        }
-    })
-*/
+
+
 
 //constants
 const PostItemUrl = "http://localhost:3000/shoppinglist/items"
@@ -51,6 +43,8 @@ function DeleteItem()
         }
     }
     xhr.send()
+    this.parentElement.remove()
+    
 }
 
 //Event when shopping-status changes
@@ -80,6 +74,7 @@ function CheckItem()
 
 //Adding a new item to the shoppinglist
 function AddNewItem(){
+
     var Item = document.getElementById("item").value;
     var Amount = document.getElementById("amount").value;
     if(!Item){return;}
@@ -91,12 +86,14 @@ function AddNewItem(){
     var deleteelement = document.createElement("input");
 
     itemelement.innerHTML = `${Item}: `;
-    amountelement.innerText = `${Amount}x`;
+    amountelement.innerText = `${Amount}x `;
     checkboxelement.type = "checkbox";
     checkboxelement.addEventListener("change", CheckItem);
 
     deleteelement.type = "button";
     deleteelement.addEventListener("click", DeleteItem)
+    deleteelement.className = "deletebutton"
+    deleteelement.value = "Delete"
 
     NewItem.appendChild(checkboxelement);
     NewItem.innerHTML += " ";
@@ -133,6 +130,8 @@ function AddNewItem(){
         emptylist.parentNode.removeChild(emptylist)
     }
 
+    document.getElementById("item").value = '';
+    document.getElementById("amount").value = '';
 
 
     /*
