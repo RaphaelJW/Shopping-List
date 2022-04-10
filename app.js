@@ -11,6 +11,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var shoppingListRouter = require('./routes/shoppinglist');
 
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config();
+}
+
 var app = express();
 
 //configure helmet

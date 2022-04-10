@@ -12,6 +12,7 @@
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.0",
     "express": "~4.16.1",
     "helmet": "^5.0.2",
     "http-errors": "~1.6.3",
