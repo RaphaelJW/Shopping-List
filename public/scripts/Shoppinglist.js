@@ -4,8 +4,9 @@
 
 
 //constants
-const PostItemUrl = "http://localhost:3000/shoppinglist/items"
-const ItemUrl = "http://localhost:3000/shoppinglist/item/"
+const baseUrl = window.location.origin
+const PostItemUrl = baseUrl + "/shoppinglist/items/"
+const ItemUrl = baseUrl + "/shoppinglist/item/"
 
 //on page load:
 
@@ -16,6 +17,9 @@ document.getElementById("list").childNodes.forEach(shoppinglistNode => {
     shoppinglistNode.firstChild.addEventListener("change", CheckItem);
     shoppinglistNode.lastChild.addEventListener("click", DeleteItem);
 });
+
+//AddItem event
+document.getElementById("AddBtn").addEventListener("click", AddNewItem);
 
 //TODO show more info when clicking on item
 function expandItem()
@@ -38,7 +42,7 @@ function DeleteItem()
             console.log(response);
             if(response.succes)
             {
-                console.log("succesfully changed status");
+                console.log("succesfully deleted");
             }
         }
     }
@@ -85,8 +89,11 @@ function AddNewItem(){
     var checkboxelement = document.createElement("input");
     var deleteelement = document.createElement("input");
 
-    itemelement.innerHTML = `${Item}: `;
+
+    itemelement.innerHTML = ` ${Item}: `;
     amountelement.innerText = `${Amount}x `;
+
+  
     checkboxelement.type = "checkbox";
     checkboxelement.addEventListener("change", CheckItem);
 
@@ -96,7 +103,6 @@ function AddNewItem(){
     deleteelement.value = "Delete"
 
     NewItem.appendChild(checkboxelement);
-    NewItem.innerHTML += " ";
     NewItem.appendChild(itemelement);
     NewItem.appendChild(amountelement);
     NewItem.appendChild(deleteelement)

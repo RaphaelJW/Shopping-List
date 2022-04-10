@@ -45,7 +45,10 @@ exports.item_update_patch = (req, res) =>{
     var id = req.params.id;
     ShoppingItem.findByIdAndUpdate({_id: id}, req.body, (err, object) => {
         if(err){
-            res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
+            res.status(500).send(JSON.stringify({succes: false, body: req.body, error: err}));
+        }
+        else if(!object){
+            res.status(404).send(JSON.stringify({succes: false, body: req.body, error: "item not found"}))
         }
         else
         {
@@ -58,7 +61,10 @@ exports.item_update_delete = (req, res) =>{
     var id = req.params.id;
     ShoppingItem.findByIdAndDelete({_id: id}, (err, object) => {
         if(err){
-            res.status(424).send(JSON.stringify({succes: false, body: req.body, error: err}));
+            res.status(500).send(JSON.stringify({succes: false, body: req.body, error: err}));
+        }
+        else if(!object){
+            res.status(404).send(JSON.stringify({succes: false, body: req.body, error: "item not found"}))
         }
         else
         {
