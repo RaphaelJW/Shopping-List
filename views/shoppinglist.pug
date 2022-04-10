@@ -13,7 +13,7 @@ block content
 
     ul(id = "list")
         each item in shoppingItems 
-            li(shoppingitem-id=item.id) #[input(type="checkbox" checked=item.shoppingstatus)] #[strong #{item.name}: ] #[em #{item.count}]x #[input(type="button")]
+            li(shoppingitem-id=item.id) #[input(type="checkbox" checked=item.shoppingstatus)] #[strong #{item.name}: ] #[em #{item.count}]x #[input(type="button", class="deletebutton" value='Delete')]
 
         else 
             li(id = "emptylist") Er zijn geen items op je shopping list
