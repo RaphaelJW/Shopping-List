@@ -2,7 +2,6 @@
 //Submit when pressing 'Enter'
 
 
-
 //constants
 const baseUrl = window.location.origin
 const PostItemUrl = baseUrl + "/shoppinglist/items/"
@@ -49,6 +48,14 @@ function DeleteItem()
     xhr.send()
     this.parentElement.remove()
     
+    
+    if(!document.getElementById('list').firstChild){
+        emptylistelement = document.createElement('li');
+        emptylistelement.id = 'emptylist'
+        emptylistelement.innerText = 'Er zijn geen items op je shopping list'
+
+        document.getElementById('list').appendChild(emptylistelement)
+    }
 }
 
 //Event when shopping-status changes
@@ -82,6 +89,7 @@ function AddNewItem(){
     var Item = document.getElementById("item").value;
     var Amount = document.getElementById("amount").value;
     if(!Item){return;}
+    if(!Amount){Amount=1;}
 
     var NewItem = document.createElement("li");
     var itemelement = document.createElement("strong");
