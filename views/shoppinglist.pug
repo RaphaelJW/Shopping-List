@@ -3,13 +3,16 @@ extends layout
 block content
     script(src="/scripts/Shoppinglist.js" defer) 
     h1= title 
-    p Welkom op #{title} pagina!
+    p Welkom op de #{title} pagina!
 
-    <h3> My Shoppinglist </h3>
-    <input type="text" id="item" placeholder="Add new item">
-    <input type="number" id="amount" placeholder="Amount" min = 1>
+    div(class="input-group mb-3")
+        span(class="input-group-text") Product 
+        input(id ="item" type="text" class="form-control" placeholder="Toevoegen" aria-label="Product")
+        span(class="input-group-text") Hoeveelheid 
+        input(id="amount" type="number" class="form-control" placeholder="Optioneel" aria-label="Hoeveelheid")
 
-    <button id="AddBtn">Add item</button>
+    <button id="AddBtn" type="button" class="btn btn-info">Toevoegen</button>
+    
 
     ul(id = "list")
         each item in shoppingItems 

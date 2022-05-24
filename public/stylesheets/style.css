@@ -1,7 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding-top: 70px;
-
+  background-color: #0784b5;
+  color: white;
 }
 
 a {
@@ -62,4 +63,7 @@ a {
   border-top-right-radius: 2px;
   top: -7px;
   left: -2px
+}
+.btn btn-info{
+  padding-bottom: 5px;
 }
