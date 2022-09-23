@@ -12,7 +12,24 @@ block content
         input(id="amount" type="number" class="form-control" placeholder="Optioneel" aria-label="Hoeveelheid")
 
     <button id="AddBtn" type="button" class="btn btn-info">Toevoegen</button>
-    
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Geselecteerde verwijderen</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Weet je het zeker?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p class="modaltekst">Weet je zeker dat je alle items wil verwijderen?</P>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluit</button>
+                    <button id= "deleteselected" type="button" class="btn btn-primary" data-bs-dismiss="modal">Verwijderen</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     ul(id = "list")
         each item in shoppingItems 

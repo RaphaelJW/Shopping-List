@@ -1,6 +1,61 @@
+//Delete all selected items
+
+document.getElementById("deleteselected").addEventListener("click", deleteselected)
+
+function deleteselected(){
+    console.log("click")
+    var listlength = document.getElementById("list").childNodes.length;
+    var list = document.getElementById("list");
+    var selected = []
+    for (let i = 0; i < listlength; i++){
+        var firstcheckbox = list.childNodes[i].childNodes[0]
+        if (firstcheckbox.checked == true){
+            selected.push(i)
+        }
+    }
+    console.log(selected)
+
+    for(let i = 0; i < selected.length; i++){
+        console.log(selected)
+        var deleteitem = selected[0];
+        console.log(deleteitem)
+        var id = list.childNodes[deleteitem].getAttribute("shoppingitem-id")
+        console.log(id)
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", ItemUrl + id)
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = ()=>{
+            if(xhr.readyState == 4 && xhr.status == 200)
+            {
+                var response = JSON.parse(xhr.responseText);
+                console.log(response);
+                if(response.succes)
+                {
+                    console.log("succesfully deleted");
+                }
+            }
+        }
+        xhr.send()
+        list.childNodes[deleteitem].parentElement.remove()
+        selected.shift()
+    }
+    
+}
 
 //Submit when pressing 'Enter'
+document.getElementById("amount").addEventListener("keydown", function submitenter(event){
+    if(event.key === "Enter")
+        document.getElementById("AddBtn").click()
+}
+)
 
+document.getElementById("item").addEventListener("keydown", function submitenter(event)
+{
+    if(event.key === "Enter")
+        document.getElementById("AddBtn").click()
+}
+)
 
 //constants
 const baseUrl = window.location.origin

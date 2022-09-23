@@ -5,6 +5,14 @@ body {
   color: white;
 }
 
+.modal-title{
+  color: black;
+}
+
+.modaltekst{
+  color: black;
+}
+
 a {
   color: #00B7FF;
 }
