@@ -1,13 +1,18 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// Require controller modules.
+const user_controller = require("../controllers/usercontroller");
 
-router.get("/cool/", (req, res, next) => {
-  res.send("You're so cool");
-});
+
+/// USER ROUTES ///
+
+// GET request for one User.
+router.get("/:id", user_controller.user_detail);
+router.get("/login", user_controller.user_login);
 
 module.exports = router;
+
+
+
+

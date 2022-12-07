@@ -53,7 +53,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/shoppinglist', shoppingListRouter);
 
 // catch 404 and forward to error handler

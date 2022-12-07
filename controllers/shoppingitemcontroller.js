@@ -30,6 +30,7 @@ exports.item_create_post = (req, res) =>{
         name: req.body.name,
         count: req.body.count,
         shoppingstatus: false,
+        user: req.body.user,
     }
     var shoppingItem = new ShoppingItem(data);
     shoppingItem.save((err, saveditem) =>

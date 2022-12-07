@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  script(src="/scripts/Usershoppinglist.js" defer) 
+  h1(id = "userid", user-id=userresult.id) User: #{userresult.name}
+
+  div(class="input-group mb-3")
+        span(class="input-group-text") Product 
+        input(id ="item" type="text" class="form-control" placeholder="Toevoegen" aria-label="Product")
+        span(class="input-group-text") Hoeveelheid 
+        input(id="amount" type="number" class="form-control" placeholder="Optioneel" aria-label="Hoeveelheid")
+
+  <button id="AddBtn" type="button" class="btn btn-info">Toevoegen</button>
+
+  ul(id="list")
+    each shoppingitem in useritems
+      li(shoppingitem-id=shoppingitem.id) #[input(type="checkbox" checked=shoppingitem.shoppingstatus)] #[strong #{shoppingitem.name}: ] #[em #{shoppingitem.count}]x #[input(type="button", class="deletebutton" value='Delete')]
